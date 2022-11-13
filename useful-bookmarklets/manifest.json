@@ -1,0 +1,23 @@
+{
+    "name": "Useful Bookmarklets",
+    "description": "Click it to display a list of useful bookmarklets based on the page you're in.",
+    "manifest_version": 3,
+    "version": "0.0.1",
+    "action": {
+        "default_icon": {
+            "16": "icon.png",
+            "24": "icon.png",
+            "32": "icon.png"
+        },
+        "default_title": "Show bookmarklets",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icon.png"
+    },
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "scripting"
+    ]
+}

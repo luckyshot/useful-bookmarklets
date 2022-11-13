@@ -1,0 +1,41 @@
+:root {
+    --redLight: #dd352e;
+    --redDark: #b12720;
+}
+
+body {
+    background: #fbfbfb;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    line-height: 1;
+    background: var(--redDark);
+    padding: 0.5em;
+    color: white;
+    font-size: 1.3rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: .3em 1em;
+    min-width: 20em;
+}
+
+a:hover {
+    background: rgb(211, 227, 255);
+}
+
+a.default {
+    opacity: .9;
+    font-size: .8em;
+}
