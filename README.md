@@ -1,6 +1,8 @@
 # Useful Bookmarklets
 
-A simple Chrome extension that lists useful actions based on the website you're in.
+#### A simple Chrome extension that lists useful actions based on the website you're in.
+
+![screenshot1](https://user-images.githubusercontent.com/141241/201515230-867085e7-aed0-4e62-ade6-c55cd31ac085.png)
 
 The extension is completely free and privacy-friendly, there are no trackers and it only activates when you click it. It's a tiny little extension that I built for myself because I use a ton of bookmarklets on my day to day, and cared to share with everyone hoping it helps you become more productive.
 
