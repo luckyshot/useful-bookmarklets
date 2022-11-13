@@ -192,6 +192,22 @@ const db = {
                 void (document.oncontextmenu = null)
             }
         },
+        {
+            title: '🖋 Check Terms and Conditions',
+            css: 'default',
+            description: `Find out the website's Terms and Conditions on tosdr.org`,
+            func: function () {
+                fetch('https://api.tosdr.org/search/v4/?query=' + location.host)
+                    .then(response => response.text())
+                    .then(data => {
+                        let jsonData = JSON.parse(data);
+                        if (!jsonData.parameters.services.length) {
+                            alert("Sorry, " + location.host + " has not been analyzed by ToSDR.");
+                        }
+                        window.open('https://tosdr.org/en/service/' + jsonData.parameters.services[0].id, 'ToS DR', 'height=333,width=720');
+                    });
+            }
+        },
         // {
         //     title: '',
         //     css: 'default',
