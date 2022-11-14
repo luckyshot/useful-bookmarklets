@@ -240,6 +240,14 @@ const db = {
             }
         },
         {
+            title: '🕰 Save version',
+            css: 'default',
+            description: `Save the current website on Archive.org`,
+            func: function () {
+                window.open('https://web.archive.org/save/' + location.href);
+            }
+        },
+        {
             title: '🚫 Enable Right-click',
             css: 'default',
             description: `Re-enable right click on websites that have disabled it`,
