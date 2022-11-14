@@ -7,6 +7,15 @@ by Xavi Esteve
 */
 const db = {
     domains: {
+        'newtab': [
+            {
+                title: 'Provide feedback',
+                description: ``,
+                func: function () {
+                    location.href = 'https://github.com/luckyshot/useful-bookmarklets/issues'
+                }
+            }
+        ],
         'docs.google.com': [
             {
                 title: '🔽 Download single sheet in XLSX',
