@@ -272,7 +272,7 @@ const db = {
             css: 'default',
             description: `Get the current window's size`,
             func: function () {
-                alert('Window dimensions: ' + document.body.clientWidth + ' × ' + document.body.clientHeight);
+                alert('Window dimensions: ' + document.body.clientWidth + ' x ' + document.body.clientHeight);
             }
         },
         // {
