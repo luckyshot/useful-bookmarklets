@@ -29,6 +29,7 @@ a {
     text-decoration: none;
     padding: .3em 1em;
     min-width: 20em;
+    max-width: 40em;
 }
 
 a:hover {
