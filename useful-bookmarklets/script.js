@@ -232,7 +232,7 @@ const db = {
             }
         },
         {
-            title: '🕰 Wayback Machine',
+            title: '🕰 See old versions',
             css: 'default',
             description: `Displays past versions of this website thanks to Archive.org`,
             func: function () {
