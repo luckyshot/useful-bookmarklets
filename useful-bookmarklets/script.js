@@ -61,6 +61,34 @@ const db = {
                 }
             },
         ],
+        'openai.com': [
+            {
+                title: '💧 Save image without watermark',
+                description: `Extract all images without the watermark`,
+                func: function () {
+                    const s = document.querySelectorAll(".generated-image > img");
+                    window.open(s[0].getAttribute("src"));
+                }
+            },
+        ],
+        'www.reddit.com': [
+            {
+                title: '🗑 Recover deleted post',
+                description: `Go to reveddit.com to recover a deleted thread on Reddit`,
+                func: function () {
+                    document.location = document.URL.replace('reddit.com', 'reveddit.com');
+                }
+            },
+        ],
+        'twitter.com': [
+            {
+                title: '👀 Read on Nitter',
+                description: `Alternative Twitter front-end focused on privacy and performance`,
+                func: function () {
+                    document.location = document.URL.replace('twitter.com', 'nitter.net');
+                }
+            },
+        ],
         'www.youtube.com': [
             {
                 title: '🛂 Bypass adult sign in',
@@ -74,6 +102,9 @@ const db = {
 
 
     },
+
+
+
     defaults: [
         {
             title: '📕 Save to Pocket',
