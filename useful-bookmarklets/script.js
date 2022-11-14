@@ -409,6 +409,24 @@ const db = {
             }
         },
         {
+            title: '🔊 Speak out loud',
+            css: 'default',
+            description: `Reads the selected text`,
+            credit: `https://locserendipity.com/Speaker.html`,
+            func: function () {
+                function getSelectionText() {
+                    var text = '';
+                    if (window.getSelection) {
+                        text = window.getSelection().toString();
+                    } else {
+                        alert('Please select some text first');
+                    } return text;
+                }
+                var to_speak = new SpeechSynthesisUtterance(getSelectionText());
+                window.speechSynthesis.speak(to_speak);
+            }
+        },
+        {
             title: 'Browser',
             css: 'heading',
         },
