@@ -116,6 +116,10 @@ const db = {
 
     defaults: [
         {
+            title: 'Share',
+            css: 'heading',
+        },
+        {
             title: '📕 Save to Pocket',
             css: 'default',
             description: `Adds the current site to Pocket so you can read it later`,
@@ -133,6 +137,169 @@ const db = {
             func: function () {
                 location.href = 'https://bufferapp.com/add?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title);
             }
+        },
+        {
+            title: '🗳 Post to Reddit',
+            css: 'default',
+            description: `Share the current website to Reddit`,
+            func: function () {
+                location.href = "https://www.reddit.com/submit?url=" + encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title);
+            }
+        },
+        {
+            title: 'Website',
+            css: 'heading',
+        },
+        {
+            title: '🇺🇲 Translate to English',
+            css: 'default',
+            description: `Translate the current website to English using Google Translate`,
+            func: function () {
+                location.href = 'http://translate.google.com/translate?u=' + encodeURIComponent(location.href) + '&sl=auto&tl=en';
+            }
+        },
+        {
+            title: '🕰 See old versions',
+            css: 'default',
+            description: `Displays past versions of this website thanks to Archive.org`,
+            func: function () {
+                location.href = 'http://web.archive.org/web/*/' + escape(location.href);
+            }
+        },
+        {
+            title: '🕰 Save version',
+            css: 'default',
+            description: `Save the current website on Archive.org`,
+            func: function () {
+                window.open('https://web.archive.org/save/' + location.href);
+            }
+        },
+        {
+            title: '📑 Web to PDF',
+            css: 'default',
+            description: `Convert the website to a PDF document using web2pdfconvert.com`,
+            func: function () {
+                window.open('https://www.web2pdfconvert.com#' + location.href);
+            }
+        },
+        {
+            title: '📱 Web to QR code',
+            css: 'default',
+            description: `Opens a new window with a QR code of the current URL using Google Charts API`,
+            func: function () {
+                var url = ('http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=' + encodeURIComponent(location.href));
+                w = open(url, 'w', 'location=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=500,height=500,modal=yes,dependent=yes');
+                if (w) {
+                    setTimeout('w.focus()', 1000)
+                } else {
+                    location = url;
+                }
+            }
+        },
+        {
+            title: '🖋 Check Terms and Conditions',
+            css: 'default',
+            description: `Find out the website's Terms and Conditions on tosdr.org`,
+            func: function () {
+                fetch('https://api.tosdr.org/search/v4/?query=' + location.host)
+                    .then(response => response.text())
+                    .then(data => {
+                        let jsonData = JSON.parse(data);
+                        if (!jsonData.parameters.services.length) {
+                            alert("Sorry, " + location.host + " has not been analyzed by ToSDR.");
+                        }
+                        window.open('https://tosdr.org/en/service/' + jsonData.parameters.services[0].id, 'ToS DR', 'height=333,width=720');
+                    });
+            }
+        },
+        {
+            title: '📜 Autofill form',
+            css: 'default',
+            description: `Autofill a form with placeholder data (password is 'usefulbookmarklets')`,
+            func: function () {
+                document.querySelectorAll('input[name*=fullname]').forEach(e => { e.value = 'Peter Griffin' });
+                document.querySelectorAll('input[name*=full_name]').forEach(e => { e.value = 'Peter Griffin' });
+                document.querySelectorAll('input[name*=name]').forEach(e => { e.value = 'Peter Griffin' });
+                document.querySelectorAll('input[name*=firstname]').forEach(e => { e.value = 'Peter' });
+                document.querySelectorAll('input[name*=fname]').forEach(e => { e.value = 'Peter' });
+                document.querySelectorAll('input[name*=first_name]').forEach(e => { e.value = 'Peter' });
+                document.querySelectorAll('input[name*=lastname]').forEach(e => { e.value = 'Griffin' });
+                document.querySelectorAll('input[name*=lname]').forEach(e => { e.value = 'Griffin' });
+                document.querySelectorAll('input[name*=last_name]').forEach(e => { e.value = 'Griffin' });
+                document.querySelectorAll('input[name*=email]').forEach(e => { e.value = 'petergriffin@gmail.com' });
+                document.querySelectorAll('input[name*=password]').forEach(e => { e.value = 'usefulbookmarklets' });
+                document.querySelectorAll('input[name*=pass]').forEach(e => { e.value = 'usefulbookmarklets' });
+                document.querySelectorAll('input[name*=post]').forEach(e => { e.value = '08080' });
+                document.querySelectorAll('input[name*=zip]').forEach(e => { e.value = '08080' });
+                document.querySelectorAll('input[name*=address]').forEach(e => { e.value = 'Adam Street 123' });
+                document.querySelectorAll('input[name*=address2]').forEach(e => { e.value = '123' });
+                document.querySelectorAll('input[name*=city]').forEach(e => { e.value = 'New York' });
+                document.querySelectorAll('input[name*=country]').forEach(e => { e.value = 'United States' });
+                document.querySelectorAll('input[name*=phone]').forEach(e => { e.value = '+7977109292' });
+                document.querySelectorAll('input[name*=mobile]').forEach(e => { e.value = '+7977109292' });
+                document.querySelectorAll('input[name*=nif]').forEach(e => { e.value = '5555555A' });
+                document.querySelectorAll('input[name*=vat]').forEach(e => { e.value = '5555555A' });
+                document.querySelectorAll('input[name*=checkbox]').forEach(e => { e.checked = true });
+                document.querySelectorAll('input[name*=consent]').forEach(e => { e.checked = true });
+                document.querySelectorAll('input[name*=gdpr]').forEach(e => { e.checked = true });
+            }
+        },
+        {
+            title: '🐞 BugMeNot autologin',
+            css: 'default',
+            description: `Find out the website's Terms and Conditions on tosdr.org`,
+            func: function () {
+                var url = ('http://www.bugmenot.com/view/' + escape(location.hostname));
+                w = open(url, 'w', 'location=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=590,height=470,modal=yes,dependent=yes');
+                if (w) { setTimeout('w.focus()', 1000) } else { location = url };
+            }
+        },
+        {
+            title: '🧱 Paywall skip',
+            css: 'default',
+            credit: 'https://github.com/gillyb/ppd',
+            description: `Destroy paywalls, or sites that stop you from using an ad-blocker.`,
+            func: function () {
+                var walls = document.querySelectorAll('div, span');
+                for (var i = 0, max = walls.length; i < max; i++) {
+                    var style = window.getComputedStyle(walls[i]);
+                    if (style.position === 'fixed' && parseInt(style.width) > 200 && parseInt(style.height) > 200) {
+                        walls[i].setAttribute('style', 'display: none!important');
+                    }
+                }
+                var body = document.getElementsByTagName('body')[0];
+                body.setAttribute('style', body.getAttribute('style') + '; overflow: auto!important');
+                // Removes blur from everything.
+                document.querySelectorAll('*').forEach(a => a.style.filter = 'blur()');
+            }
+        },
+        {
+            title: 'Text',
+            css: 'heading',
+        },
+        {
+            title: '🛒 Search on Amazon',
+            css: 'default',
+            description: `Search the selected text in Amazon`,
+            func: function () {
+                q = document.getSelection();
+                if (!q) {
+                    q = prompt('Amazon search:', '')
+                };
+                if (q) window.open('http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias=aps&tag=p-id-20&field-keywords=' + escape(q));
+            }
+        },
+        {
+            title: '📖 Dictionary definition',
+            css: 'default',
+            description: `Define the selected word using Google`,
+            func: function () {
+                t = '' + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection ? document.selection.createRange().text : ''); u = t ? 'https://www.google.com/search?q=' + encodeURIComponent('define:' + unescape('"') + t + unescape('"')) : ''; w = window.open(u, '_blank', 'height=500,width=800,scrollbars=1'); w.focus && w.focus(); if (!t) { w.document.write(unescape('<html><head><title>Define...</title></head><body style="padding:1em;font-family:Helvetica,Arial"><br><form action="http://www.google.com/search"><input id="q" name="q" value="define:">&nbsp;<input type="submit" value="Go"></form><p style="font-size:.75em;color:#999">Note: you can also choose a term beforehand by highlighting it on the page!<br><br>Created by <a target="_blank" href="http://mrcoles.com/blog/dictionary-bookmarklet-popup-definition-browser/">Peter Coles</a></p><script>var q =document.getElementById("q"),v=q.value;q.focus();q.value="";q.value=v;</script></body></html>')); w.document.close(); }
+            }
+        },
+        {
+            title: 'Tools',
+            css: 'heading',
         },
         {
             title: '📐 Imperial to Metric',
@@ -166,6 +333,10 @@ const db = {
             }
         },
         {
+            title: 'Browser',
+            css: 'heading',
+        },
+        {
             title: '🔃 Rotate screen',
             css: 'default',
             description: `Rotate the website 90 degrees clockwise, keep clicking to rotate it further`,
@@ -183,77 +354,12 @@ const db = {
             }
         },
         {
-            title: '🗳 Post to Reddit',
+            title: '⏬ Auto Scroll',
             css: 'default',
-            description: `Share the current website to Reddit`,
+            description: `Auto Scroll the website, use 0-9 to set the speed`,
+            credit: 'The Autoscroll Bookmarket:Tim Harper:http://tim.theenchanter.com',
             func: function () {
-                location.href = "https://www.reddit.com/submit?url=" + encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title);
-            }
-        },
-        {
-            title: '🇺🇲 Translate to English',
-            css: 'default',
-            description: `Translate the current website to English using Google Translate`,
-            func: function () {
-                location.href = 'http://translate.google.com/translate?u=' + encodeURIComponent(location.href) + '&sl=auto&tl=en';
-            }
-        },
-        {
-            title: '📑 Web to PDF',
-            css: 'default',
-            description: `Convert the website to a PDF document using web2pdfconvert.com`,
-            func: function () {
-                window.open('https://www.web2pdfconvert.com#' + location.href);
-            }
-        },
-        {
-            title: '📱 Web to QR code',
-            css: 'default',
-            description: `Opens a new window with a QR code of the current URL using Google Charts API`,
-            func: function () {
-                var url = ('http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=' + encodeURIComponent(location.href));
-                w = open(url, 'w', 'location=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=500,height=500,modal=yes,dependent=yes');
-                if (w) {
-                    setTimeout('w.focus()', 1000)
-                } else {
-                    location = url;
-                }
-            }
-        },
-        {
-            title: '🛒 Search on Amazon',
-            css: 'default',
-            description: `Search the selected text in Amazon`,
-            func: function () {
-                q = document.getSelection();
-                if (!q) {
-                    q = prompt('Amazon search:', '')
-                };
-                if (q) window.open('http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias=aps&tag=p-id-20&field-keywords=' + escape(q));
-            }
-        },
-        {
-            title: '📖 Dictionary definition',
-            css: 'default',
-            description: `Define the selected word using Google`,
-            func: function () {
-                t = '' + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection ? document.selection.createRange().text : ''); u = t ? 'https://www.google.com/search?q=' + encodeURIComponent('define:' + unescape('"') + t + unescape('"')) : ''; w = window.open(u, '_blank', 'height=500,width=800,scrollbars=1'); w.focus && w.focus(); if (!t) { w.document.write(unescape('<html><head><title>Define...</title></head><body style="padding:1em;font-family:Helvetica,Arial"><br><form action="http://www.google.com/search"><input id="q" name="q" value="define:">&nbsp;<input type="submit" value="Go"></form><p style="font-size:.75em;color:#999">Note: you can also choose a term beforehand by highlighting it on the page!<br><br>Created by <a target="_blank" href="http://mrcoles.com/blog/dictionary-bookmarklet-popup-definition-browser/">Peter Coles</a></p><script>var q =document.getElementById("q"),v=q.value;q.focus();q.value="";q.value=v;</script></body></html>')); w.document.close(); }
-            }
-        },
-        {
-            title: '🕰 See old versions',
-            css: 'default',
-            description: `Displays past versions of this website thanks to Archive.org`,
-            func: function () {
-                location.href = 'http://web.archive.org/web/*/' + escape(location.href);
-            }
-        },
-        {
-            title: '🕰 Save version',
-            css: 'default',
-            description: `Save the current website on Archive.org`,
-            func: function () {
-                window.open('https://web.archive.org/save/' + location.href);
+                var _ss_interval_pointer; _ss_speed = 1; _ss_speed_pairs = [[0, 0], [1, 200.0], [1, 120.0], [1, 72.0], [1, 43.2], [1, 25.9], [2, 31.0], [4, 37.2], [8, 44.8], [8, 26.4], [16, 32.0]]; _ss_last_onkeypress = document.onkeypress; _ss_stop = function () { clearTimeout(_ss_interval_pointer) }; _ss_start = function () { _ss_abs_speed = Math.abs(_ss_speed); _ss_direction = _ss_speed / _ss_abs_speed; _ss_speed_pair = _ss_speed_pairs[_ss_abs_speed]; _ss_interval_pointer = setInterval('scrollBy(0,' + _ss_direction * _ss_speed_pair[0] + '); if((pageYOffset<=1)||(pageYOffset==document.height-innerHeight)) _ss_speed=0;', _ss_speed_pair[1]); }; _ss_adj = function (q) { _ss_speed += q; if (Math.abs(_ss_speed) >= _ss_speed_pairs.length) _ss_speed = (_ss_speed_pairs.length - 1) * (_ss_speed / Math.abs(_ss_speed)) }; _ss_quit = function () { _ss_stop(); document.onkeypress = _ss_last_onkeypress; }; document.onkeypress = function (e) { if ((e.charCode == 113) || (e.keyCode == 27)) { _ss_quit(); return; }; if (e.charCode >= 48 && e.charCode <= 57) _ss_speed = e.charCode - 48; else switch (e.charCode) { case 95: _ss_adj(-2); case 45: _ss_adj(-1); break; case 43: _ss_adj(2); case 61: _ss_adj(1); break; }; _ss_stop(); _ss_start(); }; _ss_stop(); _ss_start();
             }
         },
         {
@@ -262,41 +368,6 @@ const db = {
             description: `Re-enable right click on websites that have disabled it`,
             func: function () {
                 document.oncontextmenu = null;
-            }
-        },
-        {
-            title: '🖋 Check Terms and Conditions',
-            css: 'default',
-            description: `Find out the website's Terms and Conditions on tosdr.org`,
-            func: function () {
-                fetch('https://api.tosdr.org/search/v4/?query=' + location.host)
-                    .then(response => response.text())
-                    .then(data => {
-                        let jsonData = JSON.parse(data);
-                        if (!jsonData.parameters.services.length) {
-                            alert("Sorry, " + location.host + " has not been analyzed by ToSDR.");
-                        }
-                        window.open('https://tosdr.org/en/service/' + jsonData.parameters.services[0].id, 'ToS DR', 'height=333,width=720');
-                    });
-            }
-        },
-        {
-            title: '🧱 Paywall skip',
-            css: 'default',
-            credit: 'https://github.com/gillyb/ppd',
-            description: `Destroy paywalls, or sites that stop you from using an ad-blocker.`,
-            func: function () {
-                var walls = document.querySelectorAll('div, span');
-                for (var i = 0, max = walls.length; i < max; i++) {
-                    var style = window.getComputedStyle(walls[i]);
-                    if (style.position === 'fixed' && parseInt(style.width) > 200 && parseInt(style.height) > 200) {
-                        walls[i].setAttribute('style', 'display: none!important');
-                    }
-                }
-                var body = document.getElementsByTagName('body')[0];
-                body.setAttribute('style', body.getAttribute('style') + '; overflow: auto!important');
-                // Removes blur from everything.
-                document.querySelectorAll('*').forEach(a => a.style.filter = 'blur()');
             }
         },
         // {
@@ -316,22 +387,19 @@ const db = {
             }
         },
         {
-            title: '📐 Get browser size',
+            title: '📐 Get window size',
             css: 'default',
             description: `Get the current window's size`,
             func: function () {
                 alert('Window dimensions: ' + document.body.clientWidth + ' x ' + document.body.clientHeight);
             }
         },
-        {
-            title: '⏬ Auto Scroll',
-            css: 'default',
-            description: `Auto Scroll the website, use 0-9 to set the speed`,
-            credit: 'The Autoscroll Bookmarket:Tim Harper:http://tim.theenchanter.com',
-            func: function () {
-                var _ss_interval_pointer; _ss_speed = 1; _ss_speed_pairs = [[0, 0], [1, 200.0], [1, 120.0], [1, 72.0], [1, 43.2], [1, 25.9], [2, 31.0], [4, 37.2], [8, 44.8], [8, 26.4], [16, 32.0]]; _ss_last_onkeypress = document.onkeypress; _ss_stop = function () { clearTimeout(_ss_interval_pointer) }; _ss_start = function () { _ss_abs_speed = Math.abs(_ss_speed); _ss_direction = _ss_speed / _ss_abs_speed; _ss_speed_pair = _ss_speed_pairs[_ss_abs_speed]; _ss_interval_pointer = setInterval('scrollBy(0,' + _ss_direction * _ss_speed_pair[0] + '); if((pageYOffset<=1)||(pageYOffset==document.height-innerHeight)) _ss_speed=0;', _ss_speed_pair[1]); }; _ss_adj = function (q) { _ss_speed += q; if (Math.abs(_ss_speed) >= _ss_speed_pairs.length) _ss_speed = (_ss_speed_pairs.length - 1) * (_ss_speed / Math.abs(_ss_speed)) }; _ss_quit = function () { _ss_stop(); document.onkeypress = _ss_last_onkeypress; }; document.onkeypress = function (e) { if ((e.charCode == 113) || (e.keyCode == 27)) { _ss_quit(); return; }; if (e.charCode >= 48 && e.charCode <= 57) _ss_speed = e.charCode - 48; else switch (e.charCode) { case 95: _ss_adj(-2); case 45: _ss_adj(-1); break; case 43: _ss_adj(2); case 61: _ss_adj(1); break; }; _ss_stop(); _ss_start(); }; _ss_stop(); _ss_start();
-            }
-        },
+        // {
+        //     title: '',
+        //     css: 'default',
+        //     description: ``,
+        //     func: function () { }
+        // },
         // {
         //     title: '',
         //     css: 'default',
@@ -369,8 +437,12 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     data.blets.forEach((item, i) => {
         let li = document.createElement('li');
         ul.appendChild(li);
-        li.innerHTML += `<a href="#" class="${item.css}" title="${item.description || item.title}">${item.title}</a>`;
-        li.addEventListener('click', function () { runBookmarklet(i, tabs[0].id); });
+        if (item.css === 'heading') {
+            li.innerHTML += `<span class="${item.css}" title="${item.description || item.title}">${item.title}</span>`;
+        } else {
+            li.innerHTML += `<a href="#" class="${item.css}" title="${item.description || item.title}">${item.title}</a>`;
+            li.addEventListener('click', function () { runBookmarklet(i, tabs[0].id); });
+        }
     });
     document.getElementById('title').innerText = domain;
 });

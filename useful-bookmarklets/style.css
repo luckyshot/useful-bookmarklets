@@ -23,6 +23,13 @@ ul {
     padding: 0;
 }
 
+.heading {
+    font-size: .8em;
+    opacity: 0.6;
+    display: block;
+    padding: 1em 1em .3em 1em;
+}
+
 a {
     display: block;
     color: inherit;
@@ -37,6 +44,6 @@ a:hover {
 }
 
 a.default {
+    font-size: .9em;
     opacity: .9;
-    font-size: .8em;
 }
