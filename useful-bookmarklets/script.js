@@ -381,18 +381,10 @@ const db = {
             title: '📐 Imperial to Metric',
             css: 'default',
             description: `Converts imperial numbers into metric`,
+            credit: `https://github.com/rufname/metricPlease`,
             func: function () {
-                document.body.innerHTML = document.body.innerHTML
-                    .replace(
-                        /([0-9\.]{1,10}) ?º/g,
-                        function (match, contents, offset, input_string) {
-                            // console.log(match, contents, offset, input_string);
-                            return Math.round((5 / 9) * (contents - 32), 1) + 'º'
-                        })
-                    .replace(/([0-9\.]{1,10}) ?(feet|ft|square feet)/g,
-                        function (match, contents, offset, input_string) {
-                            return Math.round(contents * 30.48) / 100 + 'm'
-                        });
+                function bR(a, b, c, d) { return function (i) { let f = i; let g; while ((g = a.exec(i)) != null) { let e = g[0].substr(0, g[0].length - b).replace(',', '').replace('\u2212', '-').trim(); e.endsWith('-') && (e = e.substr(0, e.length - 1)); let h = Math.round(c(e) * 10) / 10; isNaN(h) || (f = f.replace(g[0], ' ' + h + ' ' + d)); } return f; }; } function checkString(a) { return a = iR1(iR2(iR3(iR4(iR5(iR6(a)))))), a = foR1(foR2(foR3(foR4(foR5(foR6(a)))))), a = yR1(yR2(yR3(yR4(yR5(yR6(a)))))), a = mR1(mR2(mR3(mR4(mR5(mR6(a)))))), a = faR1(faR2(a)), a; } function cC(e) { let b = e.childNodes; for (let a = 0; a < b.length; a++)if (b[a].nodeType === 3) { let c = b[a].nodeValue; let d = checkString(c); c !== d && (b[a].nodeValue = d); } else b[a].tagName !== 'SCRIPT' && cC(b[a]); } let iR1 = bR(/[0-9]+( |-|)in\./g, 3, function (a) { return a * 2.54; }, 'cm'); let iR2 = bR(/[0-9]+( |-|)inch/g, 4, function (a) { return a * 2.54; }, 'cm'); let iR3 = bR(/[0-9]+( |-|)inches/g, 6, function (a) { return a * 2.54; }, 'cm'); let iR4 = bR(/[0-9]{1,3},[0-9]{3}( |-|)in\./g, 3, function (a) { return a * 2.54; }, 'cm'); let iR5 = bR(/[0-9]{1,3},[0-9]{3}( |-|)inch/g, 4, function (a) { return a * 2.54; }, 'cm'); let iR6 = bR(/[0-9]{1,3},[0-9]{3}( |-|)inches/g, 6, function (a) { return a * 2.54; }, 'cm'); let foR1 = bR(/[0-9]+( |-|)ft\./g, 3, function (a) { return a * 0.3048; }, 'm'); let foR2 = bR(/[0-9]+( |-|)foot/g, 4, function (a) { return a * 0.3048; }, 'm'); let foR3 = bR(/[0-9]+( |-|)feet/g, 4, function (a) { return a * 0.3048; }, 'm'); let foR4 = bR(/[0-9]{1,3},[0-9]{3}( |-|)ft\./g, 3, function (a) { return a * 0.3048; }, 'm'); let foR5 = bR(/[0-9]{1,3},[0-9]{3}( |-|)foot/g, 4, function (a) { return a * 0.3048; }, 'm'); let foR6 = bR(/[0-9]{1,3},[0-9]{3}( |-|)feet/g, 4, function (a) { return a * 0.3048; }, 'm'); let yR1 = bR(/[0-9]+( |-|)yd\./g, 3, function (a) { return a * 0.9144; }, 'm'); let yR2 = bR(/[0-9]+( |-|)yard/g, 4, function (a) { return a * 0.9144; }, 'm'); let yR3 = bR(/[0-9]+( |-|)yards/g, 5, function (a) { return a * 0.9144; }, 'm'); let yR4 = bR(/[0-9]{1,3},[0-9]{3}( |-|)yd\./g, 3, function (a) { return a * 0.9144; }, 'm'); let yR5 = bR(/[0-9]{1,3},[0-9]{3}( |-|)yard/g, 4, function (a) { return a * 0.9144; }, 'm'); let yR6 = bR(/[0-9]{1,3},[0-9]{3}( |-|)yards/g, 5, function (a) { return a * 0.9144; }, 'm'); let mR1 = bR(/[0-9]+( |-|)mi\./g, 3, function (a) { return a * 1.609344; }, 'km'); let mR2 = bR(/[0-9]+( |-|)mile/g, 4, function (a) { return a * 1.609344; }, 'km'); let mR3 = bR(/[0-9]+( |-|)miles/g, 5, function (a) { return a * 1.609344; }, 'km'); let mR4 = bR(/[0-9]{1,3},[0-9]{3}( |-|)mi\./g, 3, function (a) { return a * 1.609344; }, 'km'); let mR5 = bR(/[0-9]{1,3},[0-9]{3}( |-|)mile/g, 4, function (a) { return a * 1.609344; }, 'km'); let mR6 = bR(/[0-9]{1,3},[0-9]{3}( |-|)miles/g, 5, function (a) { return a * 1.609344; }, 'km'); let faR1 = bR(/([−-]|)[0-9]+( |-|)[Dd]egree [Ff]ahrenheit/g, 17, function (a) { return (a - 32) * (5 / 9); }, '\xB0C'); let faR2 = bR(/([−-]|)[0-9]+( |-|)[Dd]egrees [Ff]ahrenheit/g, 18, function (a) { return (a - 32) * (5 / 9); }, '\xB0C'); cC(document.body);
+
             }
         },
         {
