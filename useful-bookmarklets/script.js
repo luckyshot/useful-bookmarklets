@@ -312,6 +312,41 @@ const db = {
             css: 'heading',
         },
         {
+            title: '🔢 Calculator',
+            css: 'default',
+            description: `Quick online calculator`,
+            credit: `https://replit.com/@bryku/calculatorPublic`,
+            func: function () {
+                function calculate(string) {
+                    if (!!string) {
+                        string = processEquation(string);
+                        console.log(string);
+                    }
+                    var result = prompt('Type in your formula:', string || '');
+                    if (result) {
+                        calculate(result);
+                    }
+                }
+                function processEquation(string) {
+                    var match = string.match(/\*|\/|\+|\-|\^/gmsi) || [];
+                    while (match.length > 0) {
+                        string = string.replace(/\((.*?)\)/gmsi, (_, s) => {
+                            return processEquation(s);
+                        }).replace(/([0-9\.\-]+)\^([0-9\.\-]+)/gmsi, (_, n1, n2) => {
+                            return Math.pow(n1, n2);
+                        }).replace(/([0-9\.\-]+)(\*|\/)([0-9\.\-]+)/gmsi, (_, n1, o, n2) => {
+                            return o == '*' ? Number(n1) * Number(n2) : Number(n1) / Number(n2);
+                        }).replace(/([0-9\.\-]+)(\-|\+)([0-9\.\-]+)/gmsi, (_, n1, o, n2) => {
+                            return o == '+' ? Number(n1) + Number(n2) : Number(n1) - Number(n2);
+                        });
+                        match = string.match(/\*|\/|\+|\-/gmsi) || [];
+                    }
+                    return string;
+                }
+                calculate();
+            }
+        },
+        {
             title: '📐 Imperial to Metric',
             css: 'default',
             description: `Converts imperial numbers into metric`,
