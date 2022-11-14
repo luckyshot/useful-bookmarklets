@@ -281,8 +281,6 @@ const db = {
                 window.open('https://www.similarweb.com/website/' + location.host + '/#overview', 'SimilarWeb.com', 'height=480,width=415');
             }
         },
-
-
         {
             title: 'Text',
             css: 'heading',
@@ -307,6 +305,39 @@ const db = {
                 t = '' + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection ? document.selection.createRange().text : ''); u = t ? 'https://www.google.com/search?q=' + encodeURIComponent('define:' + unescape('"') + t + unescape('"')) : ''; w = window.open(u, '_blank', 'height=500,width=800,scrollbars=1'); w.focus && w.focus(); if (!t) { w.document.write(unescape('<html><head><title>Define...</title></head><body style="padding:1em;font-family:Helvetica,Arial"><br><form action="http://www.google.com/search"><input id="q" name="q" value="define:">&nbsp;<input type="submit" value="Go"></form><p style="font-size:.75em;color:#999">Note: you can also choose a term beforehand by highlighting it on the page!<br><br>Created by <a target="_blank" href="http://mrcoles.com/blog/dictionary-bookmarklet-popup-definition-browser/">Peter Coles</a></p><script>var q =document.getElementById("q"),v=q.value;q.focus();q.value="";q.value=v;</script></body></html>')); w.document.close(); }
             }
         },
+
+
+        {
+            title: '🌫 Blur text',
+            css: 'default',
+            description: `Blurs the selected text to protect privacy`,
+            credit: `https://www.codeproject.com/Questions/897645/Replacing-selected-text-HTML-JavaScript`,
+            func: function () {
+                var sel, range, node;
+                if (window.getSelection) {
+                    sel = window.getSelection();
+                    if (sel.getRangeAt && sel.rangeCount) {
+                        range = window.getSelection().getRangeAt(0);
+                        console.log(range);
+                        var html = '<span style="filter: blur(.4em);">' + range + '</span>'
+                        range.deleteContents();
+
+                        var el = document.createElement("div");
+                        el.innerHTML = html;
+                        var frag = document.createDocumentFragment(), node, lastNode;
+                        while ((node = el.firstChild)) {
+                            lastNode = frag.appendChild(node);
+                        }
+                        range.insertNode(frag);
+                    }
+                } else if (document.selection && document.selection.createRange) {
+                    range = document.selection.createRange();
+                    range.collapse(false);
+                    range.pasteHTML(html);
+                }
+            }
+        },
+
         {
             title: 'Tools',
             css: 'heading',
