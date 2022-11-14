@@ -267,6 +267,14 @@ const db = {
                 document.cookie = null;
             }
         },
+        {
+            title: '📐 Get browser size',
+            css: 'default',
+            description: `Get the current window's size`,
+            func: function () {
+                alert('Window dimensions: ' + document.body.clientWidth + ' × ' + document.body.clientHeight);
+            }
+        },
         // {
         //     title: '',
         //     css: 'default',
