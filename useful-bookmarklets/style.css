@@ -1,20 +1,34 @@
 :root {
-    --redLight: #dd352e;
-    --redDark: #b12720;
+    --colorRed: #b12720;
+    --colorHeading: #fff;
+    --colorText: #030303;
+    --colorSecondary: #fbfbfb;
+    --colorFocus: rgb(211, 227, 255)
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorRed: #870000;
+        --colorHeading: #fff;
+        --colorText: #fbfbfb;
+        --colorSecondary: #292a2d;
+        --colorFocus: #202124;
+    }
 }
 
 body {
-    background: #fbfbfb;
+    background: var(--colorSecondary);
     margin: 0;
     padding: 0;
+    color: var(--colorText);
 }
 
 h1 {
     margin: 0;
     line-height: 1;
-    background: var(--redDark);
+    background: var(--colorRed);
     padding: 0.5em;
-    color: white;
+    color: var(--colorHeading);
     font-size: 1.3rem;
 }
 
@@ -30,7 +44,11 @@ ul {
     padding: 1em 1em .3em 1em;
 }
 
-a {
+a:hover {
+    background: var(--colorFocus);
+}
+
+ul a {
     display: block;
     color: inherit;
     text-decoration: none;
@@ -39,11 +57,7 @@ a {
     max-width: 40em;
 }
 
-a:hover {
-    background: rgb(211, 227, 255);
-}
-
-a.default {
+ul a.default {
     font-size: .9em;
     opacity: .9;
 }
