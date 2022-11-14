@@ -259,6 +259,14 @@ const db = {
         //         var s = document.createElement('script'); s.type = 'text/javascript'; document.body.appendChild(s); s.src = 'http://www.websiteasteroids.com/asteroids.min.js'; void (0);
         //     }
         // },
+        {
+            title: '🍪 Delete all cookies',
+            css: 'default',
+            description: `Delete all cookies from current site`,
+            func: function () {
+                document.cookie = null;
+            }
+        },
         // {
         //     title: '',
         //     css: 'default',
