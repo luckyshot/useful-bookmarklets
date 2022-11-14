@@ -348,14 +348,14 @@ const db = {
             description: `Quick online calculator`,
             credit: `https://replit.com/@bryku/calculatorPublic`,
             func: function () {
-                function calculate(string) {
+                function calc(string) {
                     if (!!string) {
                         string = processEquation(string);
                         console.log(string);
                     }
                     var result = prompt('Type in your formula:', string || '');
                     if (result) {
-                        calculate(result);
+                        calc(result);
                     }
                 }
                 function processEquation(string) {
@@ -374,7 +374,7 @@ const db = {
                     }
                     return string;
                 }
-                calculate();
+                calc();
             }
         },
         {
