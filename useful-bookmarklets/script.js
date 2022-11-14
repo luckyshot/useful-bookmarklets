@@ -61,6 +61,18 @@ const db = {
                 }
             },
         ],
+        'www.youtube.com': [
+            {
+                title: '🛂 Bypass adult sign in',
+                description: `Bypass Youtube adult filter without sign in`,
+                func: function () {
+                    window.location.replace(document.URL.replace('watch?v=', 'v/'));
+                }
+            },
+        ],
+
+
+
     },
     defaults: [
         {
