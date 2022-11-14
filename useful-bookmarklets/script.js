@@ -274,6 +274,16 @@ const db = {
             }
         },
         {
+            title: '🌐 Check on SimilarWeb',
+            css: 'default',
+            description: `Check popularity on similarweb.com`,
+            func: function () {
+                window.open('https://www.similarweb.com/website/' + location.host + '/#overview', 'SimilarWeb.com', 'height=480,width=415');
+            }
+        },
+
+
+        {
             title: 'Text',
             css: 'heading',
         },
