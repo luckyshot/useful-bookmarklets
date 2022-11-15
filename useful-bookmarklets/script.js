@@ -255,10 +255,10 @@ const db = {
             }
         },
         {
-            title: '🧱 Paywall skip',
+            title: '🧱 Wall skip',
             css: 'default',
             credit: 'https://github.com/gillyb/ppd',
-            description: `Destroy paywalls, or sites that stop you from using an ad-blocker.`,
+            description: `Remove walls on sites that force you to sign up`,
             func: function () {
                 var walls = document.querySelectorAll('div, span');
                 for (var i = 0, max = walls.length; i < max; i++) {
