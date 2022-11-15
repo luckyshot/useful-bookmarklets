@@ -465,6 +465,14 @@ const db = {
             }
         },
         {
+            title: '🔼 Scroll to top',
+            css: 'default',
+            description: `Scroll to the top of the page`,
+            func: function () {
+                location.href = '#';
+            }
+        },
+        {
             title: '🚫 Enable Right-click',
             css: 'default',
             description: `Re-enable right click on websites that have disabled it`,
