@@ -30,6 +30,21 @@ const db = {
                 }
             }
         ],
+        'github.com': [
+            {
+                title: '📑 List commits',
+                description: `Copies all commits into a simple text list`,
+                func: function () {
+                    let list = '';
+                    document.querySelectorAll('.TimelineItem-body .js-navigation-open').forEach(function(item){
+                        list = item.innerText + "\n" + list;
+                    });
+                    setTimeout(async () => console.log(
+                        await navigator.clipboard.writeText(list)), 500);
+                    alert('List copied to clipboard');
+                }
+            },
+        ],
         'open.spotify.com': [
             {
                 title: '🎵 List tracks',
