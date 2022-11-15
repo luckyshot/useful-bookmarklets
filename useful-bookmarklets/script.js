@@ -140,7 +140,7 @@ const db = {
             description: `Adds the current site to Pocket so you can read it later`,
             func: function () {
                 var pocketWindow = window.open('https://getpocket.com/edit?url=' + document.location, 'PocketAdd', 'height=300,width=600');
-                setTimeout(function () {
+                setTimeout(function () { 
                     pocketWindow.close();
                 }, 5000);
             }
@@ -257,16 +257,6 @@ const db = {
                 document.querySelectorAll('input[name*=checkbox]').forEach(e => { e.checked = true });
                 document.querySelectorAll('input[name*=consent]').forEach(e => { e.checked = true });
                 document.querySelectorAll('input[name*=gdpr]').forEach(e => { e.checked = true });
-            }
-        },
-        {
-            title: '🐞 BugMeNot autologin',
-            css: 'default',
-            description: `Find out the website's Terms and Conditions on tosdr.org`,
-            func: function () {
-                var url = ('http://www.bugmenot.com/view/' + escape(location.hostname));
-                w = open(url, 'w', 'location=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=590,height=470,modal=yes,dependent=yes');
-                if (w) { setTimeout('w.focus()', 1000) } else { location = url };
             }
         },
         {
