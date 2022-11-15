@@ -162,6 +162,17 @@ const db = {
             }
         },
         {
+            title: '📋 Copy link',
+            css: 'default',
+            description: `Copies the website's title and link, perfect for sharing`,
+            func: function () {
+                let content = document.title + "\n" + location.href;
+                setTimeout(async () => console.log(
+                    await navigator.clipboard.writeText(content)), 500);
+                alert('Link copied to clipboard');
+            }
+        },
+        {
             title: 'Website',
             css: 'heading',
         },
