@@ -9,8 +9,8 @@ const db = {
     domains: {
         'newtab': [
             {
-                title: 'Provide feedback',
-                description: ``,
+                title: 'Extension info',
+                description: `Provide feedback and view the source code.`,
                 func: function () {
                     location.href = 'https://github.com/luckyshot/useful-bookmarklets/issues'
                 }
