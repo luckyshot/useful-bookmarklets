@@ -321,6 +321,14 @@ const db = {
             }
         },
         {
+            title: '🧱 Wall skip via 12ft',
+            css: 'default',
+            description: `Remove walls on sites that force you to sign up using 12ft.io`,
+            func: function () {
+                location.href = 'https://12ft.io/' + location.href;
+            }
+        },
+        {
             title: '🌐 Check on SimilarWeb',
             css: 'default',
             description: `Check popularity on similarweb.com`,
