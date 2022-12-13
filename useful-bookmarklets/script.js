@@ -45,6 +45,28 @@ const db = {
                 }
             },
         ],
+        'loc2.caixabank.es': [
+            {
+                title: '📑 List transactions',
+                description: `Copies all transactions into a simple text list`,
+                func: function () {
+                    let list = '';
+                    document.querySelectorAll('#timeLine tr').forEach(function(item){
+                        let name = item.querySelector(':scope .margin--bottom-extrasmall');
+                        let date = item.querySelector(':scope .s-date.white_space--nowrap.margin--right-normal');
+                        let price = item.querySelector(':scope .table--cell-import-big.text--align-right .margin--bottom-extrasmall');
+                        let priceSign = item.querySelector(':scope .table--cell-import-big.text--align-right .s-import--positive');
+                        let balance = item.querySelector(':scope .table--cell-import-big.text--align-right .font--size-90');
+                        if (price){
+                            list = list + "\n" + (name ? name.innerText : '')+";"+(date ? date.innerText : '')+";"+(priceSign ? '' : '-')+(price ? price.innerText.replace('.','').replace(',','.') : '')+";"+(balance ? balance.innerText.replace('.','').replace(',','.').replace('+ ','') : '');
+                        }
+                    });
+                    setTimeout(async () => console.log(
+                        await navigator.clipboard.writeText(list)), 500);
+                    alert('List copied to clipboard');
+                }
+            },
+        ],
         'open.spotify.com': [
             {
                 title: '🎵 List tracks',
