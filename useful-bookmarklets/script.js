@@ -126,6 +126,15 @@ const db = {
                 }
             },
         ],
+        'store.steampowered.com': [
+            {
+                title: '📉 Price history on steamdb.info',
+                description: `Get insights on price variability and more`,
+                func: function () {
+                    document.location = 'https://steamdb.info/app/' + location.href.split('/')[4] + '/';
+                }
+            },
+        ],
         'twitter.com': [
             {
                 title: '👀 Read on Nitter',
